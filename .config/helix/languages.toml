@@ -6,11 +6,20 @@ pyright = { command = "pyright-langserver", args = ["--stdio"], config = {} }
 prettier = { command = 'prettier', args = ["--parser", "typescript"] }
 ltex-ls = { command = "ltex-ls", config = {} }
 
-
+# due to this issue https://github.com/helix-editor/helix/issues/5174#issuecomment-1353668616
 [[language]]
 name = "toml"
 language-servers = []
 
+[[language]]
+name = "json"
+scope = "source.json"
+injection-regex = "json"
+file-types = ["json", "jsonc", "arb", "ipynb", "geojson"]
+roots = []
+language-servers = [ "vscode-json-language-server" ]
+auto-format = false
+indent = { tab-width = 2, unit = "  " }
 
 [[language]]
 name = "markdown"
@@ -20,7 +29,6 @@ file-types = ["md", "markdown", "PULLREQ_EDITMSG"]
 roots = [".marksman.toml"]
 language-servers = ["marksman", "ltex-ls"]
 indent = { tab-width = 2, unit = "  " }
-
 
 [[language]]
 name = "python"
@@ -59,4 +67,3 @@ shebangs = []
 roots = []
 language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "prettier" ]
 indent = { tab-width = 2, unit = "  " }
-
