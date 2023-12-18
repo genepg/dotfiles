@@ -1,4 +1,4 @@
-theme = "gruvbox"
+theme = "catppuccin_mocha"
 
 [editor]
 line-number = "relative"
@@ -20,7 +20,8 @@ right = ["selections", "position", "version-control", "file-encoding", "file-lin
 separator = "│"
 
 [editor.file-picker]
-hidden =  false
+hidden = false
+ignore = false
 
 [editor.search]
 smart-case = true
@@ -40,10 +41,19 @@ tabpad = "·" # Tabs will looiik like "→···" (depending on tab width)
 [editor.lsp]
 display-messages = true
 
+[editor.soft-wrap]
+enable = true
+
 [keys.normal]
 # change basic behavior
 "esc" = ["collapse_selection", "keep_primary_selection"]
-"a" = ["ensure_selections_forward", "move_char_right", "insert_mode"]
+"a" = ["append_mode", "collapse_selection"]
+"i" = ["insert_mode", "collapse_selection"]
+"y" = ["yank_joined_to_clipboard"]
+"p" = ["paste_clipboard_after"]
+"P" = ["paste_clipboard_before"]
+"R" = ["replace_selections_with_clipboard"]
+
 # move line up & down
 "A-k" = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
 "A-j" = ["extend_to_line_bounds", "delete_selection", "paste_after"]
@@ -58,12 +68,22 @@ display-messages = true
 "C-s" = ":w"
 
 [keys.normal.space]
-"c" = {"f" = ":format"}
+"l" = {"f" = ":format"}
+"q" = ":bc"
+"y" = ["yank"]
+"p" = ["paste_after"]
+"P" = ["paste_before"]
+"R" = ["replace_with_yanked"]
 
 [keys.select]
+# change basic behavior
+"y" = ["yank_joined_to_clipboard"]
 # move line up & down
 "A-k" = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
 "A-j" = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 X = "extend_line_above"
+"R" = ["replace_selections_with_clipboard"]
 
+[keys.select.space]
+"y" = ["yank"]
 

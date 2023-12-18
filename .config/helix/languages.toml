@@ -2,9 +2,11 @@
 # See the languages documentation: https://docs.helix-editor.com/master/languages.html
 
 [language-server]
-pyright = { command = "pyright-langserver", args = ["--stdio"], config = {} }
+vscode-json-language-server =  { command = "vscode-json-language-server", args = ["--stdio"], config = { provideFormatter = true } }
 prettier = { command = 'prettier', args = ["--parser", "typescript"] }
 ltex-ls = { command = "ltex-ls", config = {} }
+pyright = { command = "pyright-langserver", args = ["--stdio"], config = {} }
+# ruff-lsp = { command = "ruff-lsp", config = { settings = { args = [] } } }
 
 # due to this issue https://github.com/helix-editor/helix/issues/5174#issuecomment-1353668616
 [[language]]
@@ -28,6 +30,7 @@ injection-regex = "md|markdown"
 file-types = ["md", "markdown", "PULLREQ_EDITMSG"]
 roots = [".marksman.toml"]
 language-servers = ["marksman", "ltex-ls"]
+formatter = { command = "dprint", args = ["fmt", "--stdin", "md"]}
 indent = { tab-width = 2, unit = "  " }
 
 [[language]]
@@ -38,6 +41,7 @@ file-types = ["py","pyi","py3","pyw","ptl",".pythonstartup",".pythonrc","SConstr
 shebangs = ["python"]
 roots = ["pyproject.toml"]
 comment-token = "#"
+# language-servers = [ { name = "ruff-lsp" }]
 language-servers = [ { name = "pyright", except-features = ["format"] }]
 formatter = { command = "black", args = ["--quiet", "-"] }
 indent = { tab-width = 4, unit = "    " }
@@ -65,5 +69,8 @@ file-types = ["ts", "mts", "cts"]
 language-id = "typescript"
 shebangs = []
 roots = []
-language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "prettier" ]
+# language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "prettier" ]
+language-servers = [ "typescript-language-server" ]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 indent = { tab-width = 2, unit = "  " }
+
